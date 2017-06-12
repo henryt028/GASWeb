@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsuarioTitle}">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usuariocodigo}" for="usuariocodigo" />
+                        <p:inputText id="usuariocodigo" value="#{usuarioController.selected.usuariocodigo}" title="#{bundle.CreateUsuarioTitle_usuariocodigo}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_usuariocodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usuarionombre}" for="usuarionombre" />
+                        <p:inputText id="usuarionombre" value="#{usuarioController.selected.usuarionombre}" title="#{bundle.CreateUsuarioTitle_usuarionombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_usuarionombre}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usuarioclave}" for="usuarioclave" />
+                        <p:inputText id="usuarioclave" value="#{usuarioController.selected.usuarioclave}" title="#{bundle.CreateUsuarioTitle_usuarioclave}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_usuarioclave}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usuariorol}" for="usuariorol" />
+                        <p:inputText id="usuariorol" value="#{usuarioController.selected.usuariorol}" title="#{bundle.CreateUsuarioTitle_usuariorol}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_usuariorol}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.create}" value="#{bundle.Save}" update="display,:InicioForm,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
